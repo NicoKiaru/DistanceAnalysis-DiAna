@@ -658,10 +658,10 @@ public class DiAna_Analyse extends JFrame implements MouseListener {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/allAllico.gif"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("allAllico.gif"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/oneAllico.gif"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("oneAllico.gif"))); // NOI18N
         jLabel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jLabel2.setPreferredSize(new java.awt.Dimension(65, 65));
 
