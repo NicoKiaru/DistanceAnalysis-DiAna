@@ -133,5 +133,10 @@
 			<artifactId>mcib3d-core</artifactId>
 			<version>master-47119b6729-1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.scijava</groupId>
+			<artifactId>scijava-ui-swing</artifactId>
+			<version>0.13.0</version>
+		</dependency>
 	</dependencies>
 </project>

@@ -23,7 +23,7 @@ import mcib3d.image3d.processing.MaximaFinder;
  *
  * @author jean-francois gilles
  */
-public class segment {
+public class Segment {
     
     /** Volume minimum **/
     int volumeMin=0;
@@ -69,8 +69,8 @@ public class segment {
     }
     
     /**
-     *  Get the Objects3D Population from the image to segment
-     * @param ima image to segment 
+     *  Get the Objects3D Population from the image to Segment
+     * @param ima image to Segment
      * @param thrValue Threshold value
      * @param volmin minimum volume value (pxl)
      * @param volmax maximum volume value (pxl)

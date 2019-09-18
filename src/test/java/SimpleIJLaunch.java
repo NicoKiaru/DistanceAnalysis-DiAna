@@ -1,5 +1,4 @@
 import DiAna.Diana_SegmentGui;
-import ij.ImagePlus;
 import net.imagej.ImageJ;
 import ij.IJ;
 

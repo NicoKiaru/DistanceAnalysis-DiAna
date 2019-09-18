@@ -122,33 +122,33 @@ public class Diana_SegmentGui extends JFrame {
         cali=img.getCalibration();
         ImagePlus image=null;
         if(filterBool){
-            image = segment.filter(img, handleFilter, radius);
+            image = Segment.filter(img, handleFilter, radius);
             
             if(segClassicBool){
-                Objects3DPopulation pop=new segment().segClassic(image, thr, min, max, exXY, exZ);
-                ImagePlus plus = segment.createImageObjects(img.getShortTitle()+"-labelled", img, pop);
+                Objects3DPopulation pop=new Segment().segClassic(image, thr, min, max, exXY, exZ);
+                ImagePlus plus = Segment.createImageObjects(img.getShortTitle()+"-labelled", img, pop);
                 image.close();
                 plus.show();
-//                image=segment.showImageObjects(img.getShortTitle()+"-labelled", stack, pop, cali);
+//                image=Segment.showImageObjects(img.getShortTitle()+"-labelled", stack, pop, cali);
             }
             else{
                 image.setCalibration(cali);
             }
         }
         if(spotBool){
-            ImageHandler seed3D = segment.ImagePeaks(img, radius, rZ, noise);
+            ImageHandler seed3D = Segment.ImagePeaks(img, radius, rZ, noise);
             ImageHandler iHA = ImageHandler.wrap(img.duplicate());
-            Objects3DPopulation pop = new segment().segSpot(iHA, seed3D, seed, gauss, sd, min, max, exXY);
-            image = segment.createImageObjects(img.getShortTitle()+"-labelled", img, pop);
+            Objects3DPopulation pop = new Segment().segSpot(iHA, seed3D, seed, gauss, sd, min, max, exXY);
+            image = Segment.createImageObjects(img.getShortTitle()+"-labelled", img, pop);
             image.show();
-//            ImageStack stack = segment.createImageObjects(img.getImageStack(), pop);
-//            image = segment.showImageObjects(img.getShortTitle()+"-labelled", stack, pop, cali);
+//            ImageStack stack = Segment.createImageObjects(img.getImageStack(), pop);
+//            image = Segment.showImageObjects(img.getShortTitle()+"-labelled", stack, pop, cali);
         }
         if(iterBool){
-            Objects3DPopulation pop = new segment().segIter(img, min, max, step, mth, exXY);
-//            ImageStack stack = segment.createImageObjects(img.getImageStack(), pop);
-//            image = segment.showImageObjects(img.getShortTitle()+"-labelled", stack, pop, cali);
-            image = segment.createImageObjects(img.getShortTitle()+"-labelled", img, pop);
+            Objects3DPopulation pop = new Segment().segIter(img, min, max, step, mth, exXY);
+//            ImageStack stack = Segment.createImageObjects(img.getImageStack(), pop);
+//            image = Segment.showImageObjects(img.getShortTitle()+"-labelled", stack, pop, cali);
+            image = Segment.createImageObjects(img.getShortTitle()+"-labelled", img, pop);
             image.show();
         }
     }
@@ -1719,13 +1719,13 @@ public class Diana_SegmentGui extends JFrame {
         
         if(filterboolA==true){
             
-            objPopA = new segment().segClassic(imA2, thr, minSizeA, maxSizeA, exXY, exZ);
-            isA2 = segment.createImageObjects(imA, objPopA);
+            objPopA = new Segment().segClassic(imA2, thr, minSizeA, maxSizeA, exXY, exZ);
+            isA2 = Segment.createImageObjects(imA, objPopA);
             
             //show
 //            imA2.close();   //for updating the image
-//            imA2= segment.showImageObjects("labelled-A", isA2, objPopA, cali);
-            imA2=segment.createImageObjects("labelled-A", imA, objPopA);
+//            imA2= Segment.showImageObjects("labelled-A", isA2, objPopA, cali);
+            imA2= Segment.createImageObjects("labelled-A", imA, objPopA);
             imA2.show();
             imA2.updateAndDraw();
             
@@ -1770,7 +1770,7 @@ public class Diana_SegmentGui extends JFrame {
         if(handleFilter.equals("none")){filterBoxAPref = 3;}
         
         
-        imA2 = segment.filter(imA, handleFilter, radius);
+        imA2 = Segment.filter(imA, handleFilter, radius);
         
         isA = imA.getImageStack();
         isA2 = imA2.getImageStack();
@@ -1829,11 +1829,11 @@ public class Diana_SegmentGui extends JFrame {
         imgTitle=imA.getTitle();iterBool=true;min=minSizeA;max=maxSizeA;mth=iterThrAPref;step=iterStepAPref;exXY=excludeXYA;
         
         //process
-        objPopA= new segment().segIter(imA, minSizeA, maxSizeA, iterStepAPref, iterThrAPref, excludeXYA);
+        objPopA= new Segment().segIter(imA, minSizeA, maxSizeA, iterStepAPref, iterThrAPref, excludeXYA);
         //show image
-//        isA2 = segment.createImageObjects(imA, objPopA);
-//        imA2= segment.showImageObjects("labelled-A", isA2, objPopA, cali);
-        imA2=segment.createImageObjects("labelled-A", imA, objPopA);
+//        isA2 = Segment.createImageObjects(imA, objPopA);
+//        imA2= Segment.showImageObjects("labelled-A", isA2, objPopA, cali);
+        imA2= Segment.createImageObjects("labelled-A", imA, objPopA);
         imA2.show();
         imA2.updateAndDraw();
         
@@ -1880,8 +1880,8 @@ public class Diana_SegmentGui extends JFrame {
         //macro
         imgTitle=imB.getTitle();iterBool=true;min=minSizeB;max=maxSizeB;mth=iterThrBPref;step=iterStepBPref;exXY=excludeXYB;
 
-        objPopB= new segment().segIter(imB, minSizeB, maxSizeB, iterStepBPref, iterThrBPref, excludeXYB);
-        imB2=segment.createImageObjects("labelled-B", imB, objPopB);
+        objPopB= new Segment().segIter(imB, minSizeB, maxSizeB, iterStepBPref, iterThrBPref, excludeXYB);
+        imB2= Segment.createImageObjects("labelled-B", imB, objPopB);
         imB2.show();
         imB2.updateAndDraw();
         
@@ -1903,7 +1903,7 @@ public class Diana_SegmentGui extends JFrame {
     }//GEN-LAST:event_questionItera2MouseReleased
 
     private void maxFinderPreviewBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maxFinderPreviewBActionPerformed
-        seed3DImageB = segment.ImagePeaks(imB, Float.parseFloat((String)radxyB.getText()), Float.parseFloat((String)radzB.getText()), Float.parseFloat((String)noiseB.getText()));
+        seed3DImageB = Segment.ImagePeaks(imB, Float.parseFloat((String)radxyB.getText()), Float.parseFloat((String)radzB.getText()), Float.parseFloat((String)noiseB.getText()));
         seed3DImageB.show();
     }//GEN-LAST:event_maxFinderPreviewBActionPerformed
 
@@ -1935,18 +1935,18 @@ public class Diana_SegmentGui extends JFrame {
         
         //maxFinder3D
         if(seed3DImageB==null){
-            seed3DImageB = segment.ImagePeaks(imB, radXYB, radZB, noiseBPref);
+            seed3DImageB = Segment.ImagePeaks(imB, radXYB, radZB, noiseBPref);
 //            seed3DImageB.show();
         }
         //process
         ImageHandler iHB = ImageHandler.wrap(imB.duplicate());
-        objPopB = new segment().segSpot(iHB, seed3DImageB, seedBPref, gaussRadBPref, sdBPref, minSizeB, maxSizeB, excludeXYB);
+        objPopB = new Segment().segSpot(iHB, seed3DImageB, seedBPref, gaussRadBPref, sdBPref, minSizeB, maxSizeB, excludeXYB);
 
         //show
-//        isB2 = segment.createImageObjects(imB, objPopB);
-//        imB2= segment.showImageObjects("labelled-B", isB2, objPopB, cali);
+//        isB2 = Segment.createImageObjects(imB, objPopB);
+//        imB2= Segment.showImageObjects("labelled-B", isB2, objPopB, cali);
         
-        imB2=segment.createImageObjects("labelled-B", imB, objPopB);
+        imB2= Segment.createImageObjects("labelled-B", imB, objPopB);
         imB2.show();
         imB2.updateAndDraw();
         
@@ -1963,13 +1963,13 @@ public class Diana_SegmentGui extends JFrame {
             excludeZ = excludeEdgeZB1.isSelected();
             imgTitle=imB.getTitle();min=minSizeB;max=maxSizeB;exXY=excludeXYB;//macro
 
-            objPopB = new segment().segClassic(imB2, thrB, minSizeB, maxSizeB, exXY, exZ);
-//            isB2 = segment.createImageObjects(imB, objPopB);
+            objPopB = new Segment().segClassic(imB2, thrB, minSizeB, maxSizeB, exXY, exZ);
+//            isB2 = Segment.createImageObjects(imB, objPopB);
 
             //show
 //            imB2.close();   //for updating the image
-//            imB2= segment.showImageObjects("labelled-B", isB2, objPopB, cali);
-            imB2=segment.createImageObjects("labelled-B", imB, objPopB);
+//            imB2= Segment.showImageObjects("labelled-B", isB2, objPopB, cali);
+            imB2= Segment.createImageObjects("labelled-B", imB, objPopB);
             imB2.show();
             imB2.updateAndDraw();
             
@@ -2012,7 +2012,7 @@ public class Diana_SegmentGui extends JFrame {
         if(handleFilter.equals("mean")){filterBoxBPref = 2;}
         if(handleFilter.equals("none")){filterBoxBPref = 3;}
         
-        imB2 = segment.filter(imB, handleFilter, radius);
+        imB2 = Segment.filter(imB, handleFilter, radius);
         
         isB = imB.getImageStack();
         isB2 = imB2.getImageStack();
@@ -2051,7 +2051,7 @@ public class Diana_SegmentGui extends JFrame {
     }//GEN-LAST:event_aboutMouseReleased
 
     private void maxFinderPreviewAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maxFinderPreviewAActionPerformed
-        seed3DImageA = segment.ImagePeaks(imA, Float.parseFloat((String)radxyA.getText()), Float.parseFloat((String)radzA.getText()), Float.parseFloat((String)noiseA.getText()));
+        seed3DImageA = Segment.ImagePeaks(imA, Float.parseFloat((String)radxyA.getText()), Float.parseFloat((String)radzA.getText()), Float.parseFloat((String)noiseA.getText()));
         seed3DImageA.show();
     }//GEN-LAST:event_maxFinderPreviewAActionPerformed
 
@@ -2083,19 +2083,19 @@ public class Diana_SegmentGui extends JFrame {
         
         //maxFinder3D
         if(seed3DImageA==null){
-            seed3DImageA = segment.ImagePeaks(imA, radXYA, radZA, noiseAPref);
+            seed3DImageA = Segment.ImagePeaks(imA, radXYA, radZA, noiseAPref);
 //            seed3DImageA.show();
         }
       //process
       ImageHandler iHA = ImageHandler.wrap(imA.duplicate());
-      objPopA = new segment().segSpot(iHA, seed3DImageA, seedAPref, gaussRadAPref, sdAPref, minSizeA, maxSizeA, excludeXYA);
+      objPopA = new Segment().segSpot(iHA, seed3DImageA, seedAPref, gaussRadAPref, sdAPref, minSizeA, maxSizeA, excludeXYA);
       
       //show
-      //isA2 = segment.createImageObjects(imA, objPopA);
-      imA2 = segment.createImageObjects("labelled-A", imA, objPopA);
+      //isA2 = Segment.createImageObjects(imA, objPopA);
+      imA2 = Segment.createImageObjects("labelled-A", imA, objPopA);
       imA2.show();
       imA2.updateAndDraw();
-//      imA2= segment.showImageObjects("labelled-A", isA2, objPopA, cali);
+//      imA2= Segment.showImageObjects("labelled-A", isA2, objPopA, cali);
 
         if (Macro.getOptions()==null){
             updatePrefs();
